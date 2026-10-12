@@ -167,7 +167,8 @@ function paintHeader(ctx: Ctx, side: PageSide, theme: PageTheme, art: PageArt) {
     r.w - r.h * 2.3,
     r.h * 0.56,
     (s) => `700 ${s}px ${FONTS.title}`,
-    0.5,
+    // Shrink a long group name (VMAAS DESTROY PIPELINES) well before cutting it short.
+    0.36,
   );
 }
 
