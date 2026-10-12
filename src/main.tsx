@@ -3,6 +3,7 @@ import '@fontsource/oswald/600.css';
 import '@fontsource/oswald/700.css';
 import '@fontsource/roboto-condensed/400.css';
 import '@fontsource/roboto-condensed/400-italic.css';
+import '@fontsource/roboto-condensed/700-italic.css';
 import '@fontsource/roboto-condensed/700.css';
 import '@fontsource/lobster/400.css';
 import './styles.css';

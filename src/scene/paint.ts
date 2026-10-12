@@ -18,6 +18,7 @@ export async function loadFonts() {
     `700 32px ${FONTS.title}`,
     `400 32px ${FONTS.small}`,
     `italic 400 32px ${FONTS.small}`,
+    `italic 700 32px ${FONTS.small}`,
     `700 32px ${FONTS.small}`,
     `400 32px ${FONTS.script}`,
   ];
@@ -260,8 +261,9 @@ function paintStrip(ctx: Ctx, r: Rect, entry: CatalogEntry, theme: PageTheme, ar
   }
 
   if (entry.album) {
-    ctx.fillStyle = shade(theme.ink, 0.25);
-    fitText(ctx, entry.album!, mid, r.y + h * 0.82, width, h * 0.16, (s) => `italic 400 ${s}px ${FONTS.small}`);
+    // Full ink and bold, like the title: thin grey italic faded into the card.
+    ctx.fillStyle = theme.ink;
+    fitText(ctx, entry.album!, mid, r.y + h * 0.82, width, h * 0.16, (s) => `italic 700 ${s}px ${FONTS.small}`);
   }
 }
 
