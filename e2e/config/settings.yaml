@@ -1,0 +1,6 @@
+title: Test Jukebox
+subtitle: Playwright
+jukebox:
+  stripsPerPage: 5
+  sound: false
+  wrap: true

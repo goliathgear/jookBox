@@ -1,0 +1,19 @@
+- Media:
+    - Jellyfin:
+        href: https://jellyfin.example.test/
+        description: Movies and TV
+    - Sonarr:
+        href: https://sonarr.example.test/
+        description: TV downloads
+- Infra:
+    - Proxmox:
+        href: https://pve.example.test:8006/
+        description: Hypervisor
+- Network:
+    - Router:
+        href: https://router.example.test/
+        description: Firewall
+- Home:
+    - Home Assistant:
+        href: https://ha.example.test/
+        description: Automations

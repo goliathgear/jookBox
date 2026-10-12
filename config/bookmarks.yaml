@@ -1,0 +1,37 @@
+# Bookmarks, in homepage's bookmarks.yaml format:
+# https://gethomepage.dev/configs/bookmarks/
+# Each group becomes its own page after the services.
+
+- Community:
+    - awesome-selfhosted:
+        - abbr: AS
+          href: https://awesome-selfhosted.net/
+    - selfh.st:
+        - abbr: SH
+          href: https://selfh.st/
+    - r/homelab:
+        - abbr: RH
+          href: https://www.reddit.com/r/homelab/
+    - r/selfhosted:
+        - abbr: RS
+          href: https://www.reddit.com/r/selfhosted/
+    - LinuxServer.io:
+        - abbr: LS
+          href: https://www.linuxserver.io/
+
+- Learning:
+    - ServeTheHome:
+        - abbr: ST
+          href: https://www.servethehome.com/
+    - Techno Tim:
+        - abbr: TT
+          href: https://technotim.live/
+    - Jeff Geerling:
+        - abbr: JG
+          href: https://www.jeffgeerling.com/blog
+    - homepage:
+        - abbr: HP
+          href: https://gethomepage.dev/
+    - Dashboard Icons:
+        - abbr: DI
+          href: https://github.com/homarr-labs/dashboard-icons

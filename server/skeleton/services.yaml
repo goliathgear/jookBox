@@ -1,0 +1,15 @@
+# Services, in homepage's services.yaml format: https://gethomepage.dev/configs/services/
+# Each service becomes a title strip:
+#   name        -> the song title (top line)
+#   description -> the artist (middle band); or set `artist:` yourself
+#   album:      -> optional small bottom line (or set jukebox.album: host)
+
+- My First Group:
+    - Homepage docs:
+        href: https://gethomepage.dev
+        description: Where the config format comes from
+        icon: homepage.png
+    - Example:
+        href: https://example.com
+        description: Replace me
+        icon: mdi-music

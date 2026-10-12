@@ -1,0 +1,19 @@
+# JookBox settings. homepage's settings.yaml works here too: keys the
+# jukebox doesn't use are ignored. See the README for every option.
+
+title: JookBox
+sign: Jook's            # the roadside sign outside reads "<sign> Diner"
+
+jukebox:
+  stripsPerPage: 5
+  wrap: false
+  sound: true
+  target: _blank
+  openAs: tab
+  icons: true
+  album: none
+  bookmarks: true
+
+layout:
+  My First Group:
+    theme: classic

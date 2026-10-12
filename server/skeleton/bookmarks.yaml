@@ -1,0 +1,8 @@
+# Bookmarks, in homepage's bookmarks.yaml format: https://gethomepage.dev/configs/bookmarks/
+# Each group becomes its own page after the services.
+#
+# - Developer:
+#     - GitHub:
+#         - abbr: GH
+#           href: https://github.com/
+[]

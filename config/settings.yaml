@@ -1,0 +1,42 @@
+# JookBox settings. homepage's settings.yaml works here too: keys the
+# jukebox doesn't use are ignored.
+
+title: Select-o-Matic           # the red script on the jukebox's glass
+subtitle: JookBox               # the badge on the coin head, in raised letters
+sign: Jook's            # the roadside sign reads "<sign> Diner"
+
+jukebox:
+  stripsPerPage: 5      # title strips per page side, 3-10
+  wrap: false           # true: turning past the last page riffles back to page A
+  sound: true           # page flips, button clicks and the selection bell
+  target: _blank        # default link target, as in homepage
+  openAs: tab           # tab, or window to open links in a new browser window
+  icons: true           # service icons on the title strips
+  album: none           # bottom line when an entry has no `album`: none, host or group
+  bookmarks: true       # add bookmarks.yaml groups as pages after the services
+
+# Page order and per-group styling. Groups not listed keep their order from
+# services.yaml, after the listed ones.
+#   theme: classic | blue | green | black
+#   color: page colour override, e.g. "#ff9900"
+#   icon:  header icon, any homepage icon name (aws.png, mdi-cloud, /icons/x.png)
+layout:
+  Virtualization:
+    theme: blue
+    icon: proxmox.png
+  Containers:
+    theme: classic
+    icon: docker.png
+  Networking:
+    theme: black
+  Monitoring:
+    theme: green
+    icon: grafana.png
+  Media and Home:
+    theme: classic
+  Automation:
+    theme: blue
+  Community:
+    theme: green
+  Learning:
+    theme: black

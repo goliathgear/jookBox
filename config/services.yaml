@@ -1,0 +1,134 @@
+# A showcase of the homelab world, in homepage's services.yaml format:
+# https://gethomepage.dev/configs/services/
+#
+# Each service is a title strip: the name is the song title, the description
+# is the artist. Swap these for your own services (see README, "Your own
+# links"); a group is a page, and a long group runs on to the next one.
+
+- Virtualization:
+    - Proxmox VE:
+        href: https://pve.proxmox.com/pve-docs/
+        description: Hypervisor documentation
+        icon: proxmox.png
+    - Proxmox forum:
+        href: https://forum.proxmox.com/
+        description: Community help
+        icon: proxmox.png
+    - TrueNAS:
+        href: https://www.truenas.com/docs/
+        description: Storage and ZFS
+        icon: truenas.png
+    - Unraid:
+        href: https://docs.unraid.net/
+        description: NAS and app server
+        icon: unraid.png
+    - XCP-ng:
+        href: https://docs.xcp-ng.org/
+        description: Open-source Xen hypervisor
+        icon: xcp-ng.png
+
+- Containers:
+    - Docker docs:
+        href: https://docs.docker.com/
+        description: Engine, Compose, Dockerfiles
+        icon: docker.png
+    - Docker Hub:
+        href: https://hub.docker.com/
+        description: Image registry
+        icon: docker.png
+    - Kubernetes:
+        href: https://kubernetes.io/docs/
+        description: Container orchestration
+        icon: kubernetes.png
+    - K3s:
+        href: https://docs.k3s.io/
+        description: Lightweight Kubernetes
+        icon: k3s.png
+    - Portainer:
+        href: https://docs.portainer.io/
+        description: Container management UI
+        icon: portainer.png
+
+- Networking:
+    - OPNsense:
+        href: https://docs.opnsense.org/
+        description: Firewall and router
+        icon: opnsense.png
+    - pfSense:
+        href: https://docs.netgate.com/pfsense/en/latest/
+        description: Firewall and router
+        icon: pfsense.png
+    - Tailscale:
+        href: https://tailscale.com/kb
+        description: WireGuard mesh VPN
+        icon: tailscale.png
+    - Pi-hole:
+        href: https://docs.pi-hole.net/
+        description: Network-wide ad blocking
+        icon: pi-hole.png
+    - Traefik:
+        href: https://doc.traefik.io/traefik/
+        description: Reverse proxy and TLS
+        icon: traefik.png
+
+- Monitoring:
+    - Grafana:
+        href: https://grafana.com/docs/grafana/latest/
+        description: Dashboards and alerting
+        icon: grafana.png
+    - Prometheus:
+        href: https://prometheus.io/docs/introduction/overview/
+        description: Metrics and time series
+        icon: prometheus.png
+    - Uptime Kuma:
+        href: https://github.com/louislam/uptime-kuma
+        description: Status pages and pings
+        icon: uptime-kuma.png
+    - Netdata:
+        href: https://learn.netdata.cloud/
+        description: Real-time host metrics
+        icon: netdata.png
+
+- Media and Home:
+    - Jellyfin:
+        href: https://jellyfin.org/docs/
+        description: Media server
+        icon: jellyfin.png
+    - Home Assistant:
+        href: https://www.home-assistant.io/docs/
+        description: Home automation
+        icon: home-assistant.png
+    - Immich:
+        href: https://immich.app/docs/overview/introduction
+        description: Photo and video backup
+        icon: immich.png
+    - Nextcloud:
+        href: https://docs.nextcloud.com/
+        description: Files, calendar, contacts
+        icon: nextcloud.png
+    - Paperless-ngx:
+        href: https://docs.paperless-ngx.com/
+        description: Document archive
+        icon: paperless-ngx.png
+
+- Automation:
+    - Ansible:
+        href: https://docs.ansible.com/
+        description: Configuration management
+        icon: ansible.png
+    - OpenTofu:
+        href: https://opentofu.org/docs/
+        description: Infrastructure as code
+        icon: opentofu.png
+    - Gitea:
+        href: https://docs.gitea.com/
+        description: Self-hosted Git
+        icon: gitea.png
+    - n8n:
+        href: https://docs.n8n.io/
+        description: Workflow automation
+        icon: n8n.png
+    - Coolify:
+        href: https://coolify.io/docs/
+        description: Self-hosted PaaS
+        icon: coolify.png

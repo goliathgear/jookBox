@@ -1,0 +1,32 @@
+# JookBox: the homelab jukebox. Edit the YAML in ./config and reload the
+# page; no restart needed. See README.md.
+
+# Fixed, so the container is jookbox-jookbox-1 whatever the folder is called.
+name: jookbox
+
+services:
+  jookbox:
+    # `docker compose up -d --build` builds this image from source;
+    # `docker compose pull` fetches it when JOOKBOX_IMAGE names a registry image.
+    build: .
+    image: ${JOOKBOX_IMAGE:-jookbox:latest}
+    restart: unless-stopped
+    ports:
+      - "${JOOKBOX_PORT:-3000}:3000"
+    volumes:
+      # settings.yaml, services.yaml, bookmarks.yaml and icons/. Missing
+      # files are created from a starter config on first run. ./config is
+      # the showcase; set JOOKBOX_CONFIG (e.g. in .env) to serve your own.
+      - ${JOOKBOX_CONFIG:-./config}:/app/config
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      # Values for {{HOMEPAGE_VAR_*}} / {{JOOKBOX_VAR_*}} placeholders in
+      # the YAML go here, e.g.:
+      # JOOKBOX_VAR_NAS_HOST: nas.lan
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
