@@ -30,7 +30,11 @@ COPY --from=build /app/dist ./dist
 # to mount (Coolify): set CONFIG_DIR=/app/bundled-config. Unused otherwise;
 # Compose mounts ./config over /app/config instead.
 COPY config ./bundled-config
-RUN mkdir -p /app/config && chown node:node /app/config
+# Make the app readable by any user, whatever permissions the checkout had:
+# COPY keeps file modes, so a clone made under umask 077 would otherwise
+# land here as root-only files the container's user can't read.
+RUN chmod -R a+rX package.json package-lock.json server shared dist bundled-config \
+ && mkdir -p /app/config && chown node:node /app/config
 USER node
 EXPOSE 3000
 VOLUME ["/app/config"]
