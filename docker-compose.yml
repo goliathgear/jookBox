@@ -11,12 +11,17 @@ services:
     build: .
     image: ${JOOKBOX_IMAGE:-jookbox:latest}
     restart: unless-stopped
+    # Run as the user who owns the config, so its files can stay private
+    # (chmod 700 on the folder, 600 on the files). Set JOOKBOX_UID and
+    # JOOKBOX_GID in .env; see "File permissions" in the README.
+    user: "${JOOKBOX_UID:-1000}:${JOOKBOX_GID:-1000}"
     ports:
       - "${JOOKBOX_PORT:-3000}:3000"
     volumes:
       # settings.yaml, services.yaml, bookmarks.yaml and icons/. Missing
       # files are created from a starter config on first run. ./config is
       # the showcase; set JOOKBOX_CONFIG (e.g. in .env) to serve your own.
+      # Once the files exist you can add :ro to mount them read-only.
       - ${JOOKBOX_CONFIG:-./config}:/app/config
     environment:
       LOG_LEVEL: ${LOG_LEVEL:-info}

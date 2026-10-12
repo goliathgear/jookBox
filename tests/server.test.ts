@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, readdir, readFile, writeFile } from 'node:fs/promises';
+import { chmod, mkdir, mkdtemp, readdir, readFile, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -97,6 +97,17 @@ describe('ensureConfig', () => {
     await writeFile(path.join(dir, 'services.yaml'), SERVICES);
     expect(await ensureConfig(dir)).toEqual([]);
     expect(await readFile(path.join(dir, 'services.yaml'), 'utf8')).toBe(SERVICES);
+  });
+
+  it('writes nothing when the config is complete, so it can be mounted read-only', async () => {
+    const dir = path.join(await tmp(), 'config');
+    await ensureConfig(dir);
+    await chmod(dir, 0o500);
+    try {
+      expect(await ensureConfig(dir)).toEqual([]);
+    } finally {
+      await chmod(dir, 0o700);
+    }
   });
 
   it('ships starter files that load without warnings', async () => {

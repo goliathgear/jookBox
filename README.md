@@ -42,7 +42,21 @@ JOOKBOX_CONFIG=./config.local
 ```
 
 Then `docker compose up -d`. If the folder is empty on first run, a starter
-config is copied in, the same way homepage does it. Already running
+config is copied in, the same way homepage does it.
+
+**File permissions.** The container runs as user 1000 unless told
+otherwise, so on a host where your account has a different ID it can't
+read a private config folder. Rather than opening the files up to
+everyone, run the container as yourself and keep them private:
+
+```bash
+printf 'JOOKBOX_UID=%s\nJOOKBOX_GID=%s\n' "$(id -u)" "$(id -g)" >> .env
+chmod 700 config.local && chmod 600 config.local/*.yaml
+docker compose up -d
+```
+
+Once the files exist, you can also add `:ro` to the volume in
+`docker-compose.yml` so the container can't change them. Already running
 homepage? `npm run import:homepage` (below) fills it from your live
 dashboard.
 
