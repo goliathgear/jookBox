@@ -280,11 +280,10 @@ function Look() {
   );
 }
 
-// Development aids: ?fx=off renders without the post-processing stack, and
-// ?view=over looks down on the booth from the side to check the lighting;
+// Development aids (?fx=off, the effects button's URL form, is read by the
+// store): ?view=over looks down on the booth from the side to check the lighting;
 // ?cam=x,y,z,lx,ly,lz parks the camera at a point looking at another.
 const params = typeof location !== 'undefined' ? new URLSearchParams(location.search) : new URLSearchParams();
-const effectsOff = params.get('fx') === 'off';
 const debugCamera = (() => {
   const v = params.get('cam')?.split(',').map(Number);
   return v?.length === 6 && v.every(Number.isFinite) ? v : null;
@@ -303,6 +302,9 @@ function DebugHandle() {
 export function Stage() {
   const config = useJukebox((s) => s.config);
   const catalog = useJukebox((s) => s.catalog);
+  const effects = useJukebox((s) => s.effects);
+  // The canvas only draws on demand; ask for a frame when the effects change.
+  useEffect(() => invalidate(), [effects]);
 
   if (!config || !catalog) return null;
   return (
@@ -335,7 +337,7 @@ export function Stage() {
         <Diner />
         <ParkingLot sign={config.sign} />
       </Suspense>
-      {!effectsOff && <Look />}
+      {effects && <Look />}
     </Canvas>
   );
 }

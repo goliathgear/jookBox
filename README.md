@@ -65,12 +65,13 @@ dashboard.
 instead of building one: CI publishes `ghcr.io/goliathgear/jookbox:latest`
 from `main`.
 
-**On a slower machine**, open it with `?fx=off` on the URL
-(http://localhost:3000/?fx=off). That turns off the post-processing (ambient
-occlusion, depth of field, bloom, grain), which is where most of the GPU time
-goes; the scene is the same. It only draws a frame when something moves, so
-it costs nothing while it sits there. Without WebGL at all it falls back to
-the list view, so the links still work.
+**On a slower machine**, press the **✦** button (top right). That turns off
+the post-processing (ambient occlusion, depth of field, bloom, grain), which
+is where most of the GPU time goes; the scene is the same, and the browser
+remembers the choice. `?fx=off` on the URL does the same for one visit.
+It only draws a frame when something moves, so it costs nothing while it
+sits there. Without WebGL at all it falls back to the list view, so the
+links still work.
 
 **On Coolify** (or any host that builds from git), create an application
 from this repository with the Dockerfile build pack and port 3000. For
@@ -88,6 +89,7 @@ serves the starter config. To serve the showcase instead, set
 | Play a selection     | Click its title strip, or press its page letter then its number: **C** then **2** plays C2 |
 | See the whole booth  | The page opens on the booth and pushes in to the jukebox. **⤢** pulls back out and **⊕** pushes in again (+ / −). Hovering a strip shows it in the ticker at the bottom. Moving the mouse tilts the view a few degrees |
 | Plain links          | **☰** opens the list view: real links you can middle-click or copy                        |
+| Draw faster          | **✦** turns the visual effects off (and on again); the browser remembers it                |
 | Everything else      | **?** shows the controls and any config warnings. Esc clears a half-typed selection        |
 
 Without WebGL you get the list view.

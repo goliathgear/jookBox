@@ -71,6 +71,25 @@ test('a sideways trackpad swipe turns the page and never navigates back', async 
   expect(overscroll).toBe('none');
 });
 
+test('the effects button turns post-processing off and remembers it', async ({ page }) => {
+  const errors = await open(page);
+  const on = page.getByRole('button', { name: 'Visual effects off (faster)' });
+  await expect(on).toHaveAttribute('aria-pressed', 'true');
+  await on.click();
+  const off = page.getByRole('button', { name: 'Visual effects on' });
+  await expect(off).toHaveAttribute('aria-pressed', 'false');
+  expect(await page.evaluate(() => localStorage.getItem('jookbox:effects'))).toBe('false');
+  // Still off after a reload, and the scene still draws.
+  await page.reload();
+  await expect(page.locator('canvas')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Visual effects on' })).toHaveAttribute('aria-pressed', 'false');
+  // ?fx=on wins for one visit without changing what's remembered.
+  await page.goto('/?fx=on');
+  await expect(page.getByRole('button', { name: 'Visual effects off (faster)' })).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('jookbox:effects'))).toBe('false');
+  expect(errors).toEqual([]);
+});
+
 test('a letter then a number opens the selection in a new tab', async ({ page, context }) => {
   await open(page);
   await page.keyboard.press('c');

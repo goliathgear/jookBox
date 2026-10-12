@@ -12,6 +12,7 @@ import { setSoundEnabled, sfx } from './audio/sfx.ts';
 import { openItem } from './launch.ts';
 
 const MUTE_KEY = 'jookbox:muted';
+const EFFECTS_KEY = 'jookbox:effects';
 
 export type Notice = { kind: 'playing' | 'rejected'; text: string; entry?: CatalogEntry; at: number };
 
@@ -32,6 +33,8 @@ interface State {
   helpOpen: boolean;
   zoomed: boolean;
   muted: boolean;
+  /** Post-processing (depth of field, bloom, grain); off draws faster on slow machines. */
+  effects: boolean;
 
   setConfig(config: JukeboxConfig): void;
   turn(delta: number): void;
@@ -41,7 +44,7 @@ interface State {
   launch(entry: CatalogEntry): void;
   setHovered(entry: CatalogEntry | null): void;
   clearBuffer(): void;
-  toggle(key: 'listOpen' | 'helpOpen' | 'zoomed' | 'muted'): void;
+  toggle(key: 'listOpen' | 'helpOpen' | 'zoomed' | 'muted' | 'effects'): void;
 }
 
 function savedMute(): boolean | null {
@@ -50,6 +53,25 @@ function savedMute(): boolean | null {
     return v === null ? null : v === 'true';
   } catch {
     return null;
+  }
+}
+
+/** ?fx=off or ?fx=on for this visit, else what this browser chose last, else on. */
+function initialEffects(): boolean {
+  const fx = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('fx') : null;
+  if (fx === 'off' || fx === 'on') return fx === 'on';
+  try {
+    return localStorage.getItem(EFFECTS_KEY) !== 'false';
+  } catch {
+    return true;
+  }
+}
+
+function remember(key: string, value: boolean) {
+  try {
+    localStorage.setItem(key, String(value));
+  } catch {
+    // Private windows can refuse storage; the toggle still works this visit.
   }
 }
 
@@ -67,6 +89,7 @@ export const useJukebox = create<State>()((set, get) => ({
   // The camera opens on the whole booth and pushes in to the pages.
   zoomed: true,
   muted: false,
+  effects: initialEffects(),
 
   setConfig(config) {
     const first = get().config === null;
@@ -143,11 +166,8 @@ export const useJukebox = create<State>()((set, get) => ({
     set({ [key]: next });
     if (key === 'muted') {
       setSoundEnabled(!next);
-      try {
-        localStorage.setItem(MUTE_KEY, String(next));
-      } catch {
-        // Private windows can refuse storage; the toggle still works this visit.
-      }
+      remember(MUTE_KEY, next);
     }
+    if (key === 'effects') remember(EFFECTS_KEY, next);
   },
 }));

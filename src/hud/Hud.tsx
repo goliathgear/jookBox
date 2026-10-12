@@ -83,6 +83,8 @@ function Help() {
           <dd>Click a title strip, or press its page letter and then its number (B then 3 plays B3).</dd>
           <dt>Shortcuts</dt>
           <dd>Enter plays the strip under the pointer · Esc clears · + / − zoom · Home / End · ? this card</dd>
+          <dt>Running slowly?</dt>
+          <dd>✦ turns the visual effects (depth of field, glow, film grain) off so it draws faster. This browser remembers the choice.</dd>
           <dt>Change the records</dt>
           <dd>Edit settings.yaml, services.yaml and bookmarks.yaml in the config folder; the jukebox reloads them when you come back to the tab.</dd>
         </dl>
@@ -108,6 +110,7 @@ export function Hud({ webgl }: { webgl: boolean }) {
   const turn = useJukebox((s) => s.turn);
   const toggle = useJukebox((s) => s.toggle);
   const muted = useJukebox((s) => s.muted);
+  const effects = useJukebox((s) => s.effects);
   const zoomed = useJukebox((s) => s.zoomed);
   const listOpen = useJukebox((s) => s.listOpen);
   const helpOpen = useJukebox((s) => s.helpOpen);
@@ -130,6 +133,13 @@ export function Hud({ webgl }: { webgl: boolean }) {
             </IconButton>
             <IconButton label={listOpen ? 'Back to the jukebox' : 'List view'} pressed={listOpen} onClick={() => toggle('listOpen')}>
               ☰
+            </IconButton>
+            <IconButton
+              label={effects ? 'Visual effects off (faster)' : 'Visual effects on'}
+              pressed={effects}
+              onClick={() => toggle('effects')}
+            >
+              {effects ? '✦' : '✧'}
             </IconButton>
           </>
         )}
